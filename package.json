@@ -5,11 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css": "node-sass --include-path scss styles/styles.scss styles/styles.css",
-    "uglify-css": "uglifycss path/to/file.css > path/to/output.min.css",
-    "watch-old": "nodemon -e scss -x npm run css && npm run uglify-css",
-    "scss": "gulp scss",
-    "watch": "gulp watch"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
