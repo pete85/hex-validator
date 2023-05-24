@@ -4,14 +4,22 @@ let parent = document.getElementById('parent');
 let header = document.createElement('h1');
 let messageParagraph = document.createElement('p');
 let headerText = document.createTextNode("HEX validator");
-let messageText;
 let hexArray = [];
 let hex;
+let isValid;
 const regex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
 const hexTable = document.createElement('table');
 const tableHeader = document.createElement('thead');
 const tableBody = document.createElement('tbody');
 const validationText = document.getElementById('validation');
+const input = document.getElementById('hex');
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter" && isValid) {
+    event.preventDefault();
+    addHex();
+  }
+});
 
 const tableCreate = () => {
   hexTable.appendChild(tableHeader);
@@ -53,22 +61,24 @@ const checkValue = () => {
   if (hex.length === stringLength) {
     validationText.innerHTML = 'Value is valid';
     validationText.style.color = '#8ed433';
+    isValid = true;
     document.getElementById('btnAdd').disabled = false;
   } else if (hex.length < stringLength) {
     validationText.innerHTML = 'Value is too short';
     validationText.style.color = '#A92222';
     document.getElementById('btnAdd').disabled = true;
+    isValid = false;
   } else {
     validationText.innerHTML = 'Value is too long';
     validationText.style.color = '#A92222';
     document.getElementById('btnAdd').disabled = true;
+    isValid = false;
   }
 };
 
 window.onload = buildContainer;
 
 const addHex = () => {
-  let li;
   const lastItem = hexArray[hexArray. length - 1];
   messageParagraph.innerHTML = '';
 
@@ -97,17 +107,21 @@ const updateTable = () => {
     const td1 = tr.insertCell();
     const td2 = tr.insertCell();
     const td3 = tr.insertCell();
+    const colorDiv = document.createElement('div');
+    colorDiv.classList.add('color-div');
     if (el.valid) {
-      td2.style.color = '#8ed433';
-      td3.style.backgroundColor = el.name;
+      td2.style.color = '#5db74e';
+      colorDiv.style.backgroundColor = el.name;
     } else {
+      colorDiv.style.backgroundColor = '#E3E2E1';
       td2.style.color = '#A92222';
-      td3.style.backgroundColor = '#E3E2E1';
     }
     td1.appendChild(document.createTextNode(el.name));
     td2.appendChild(document.createTextNode(el.valid ? 'Valid' : 'Invalid'));
+    td3.appendChild(colorDiv);
   });
   parent.appendChild(hexTable);
+  document.getElementById('hex').value = '';
 }
 
 const reset = () => {
@@ -118,18 +132,3 @@ const reset = () => {
 const isValidHex = (hex) => {
   return regex.test(hex);
 }
-
-// Simple validation
-const checkHexColors = (hexColors) => {
-  const results = [];
-  for (let i = 0; i < hexColors.length; i++) {
-    const hex = hexColors[i];
-    const isValid = isValidHex(hex);
-    results.push(isValid);
-  }
-  return results;
-}
-
-const colors = ['#ff0000', '#00ff00', '#0000ff', '#123abc', '#xyz123', '#A92222'];
-const validationResults = checkHexColors(colors);
-// console.log(validationResults);

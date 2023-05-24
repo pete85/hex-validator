@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "css": "node-sass --include-path scss styles/styles.scss styles/styles.css",
     "uglify-css": "uglifycss path/to/file.css > path/to/output.min.css",
-    "watch": "nodemon -e scss -x npm run css && npm run uglify-css"
+    "watch-old": "nodemon -e scss -x npm run css && npm run uglify-css",
+    "scss": "gulp scss",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -20,10 +22,21 @@
   },
   "homepage": "https://github.com/pete85/hex-validator#readme",
   "devDependencies": {
+    "gulp": "^4.0.2",
     "node-sass": "^9.0.0",
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "browser-sync": "^2.29.3",
+    "cssnano": "^6.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.7.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-terser": "^2.1.0",
+    "gulp-watch": "^5.0.1",
+    "sass": "^1.62.1",
     "uglifycss": "^0.0.29"
   }
 }

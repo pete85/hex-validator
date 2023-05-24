@@ -6,23 +6,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
-}
+  margin: 0; }
 
 h1 {
   font: 3rem/2rem 'Bebas Neue', Helvetica Neue, sans-serif;
-  margin: 10px 0;
-}
+  margin: 10px 0; }
 
 p, li, label, input {
   font: 1rem/1rem 'Raleway', sans-serif;
-  margin: 5px 0;
-}
+  margin: 5px 0; }
 
 span {
   font-family: 'Raleway', sans-serif;
-  font-size: 0.8rem;
-}
+  font-size: 0.8rem; }
 
 .container {
   width: 100%;
@@ -30,8 +26,8 @@ span {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  #parent {
+  justify-content: center; }
+  .container #parent {
     width: 50%;
     height: 100%;
     overflow-y: auto;
@@ -39,56 +35,40 @@ span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    table {
+    justify-content: center; }
+    .container #parent table {
       border-collapse: collapse;
-      width: 90%;
-      thead {
+      width: 90%; }
+      .container #parent table thead {
         background: #3a4f61;
-        color: #FFFFFF;
-        th {
+        color: #FFFFFF; }
+        .container #parent table thead th {
           font: 1rem/1rem 'Bebas Neue', Helvetica Neue, sans-serif;
           position: sticky;
           top: 0;
           width: 100px;
-          padding: 10px;
-        }
-      }
-      tbody {
-        font: 1rem/1rem 'Raleway', sans-serif;
-        td {
+          padding: 10px; }
+      .container #parent table tbody {
+        font: 1rem/1rem 'Raleway', sans-serif; }
+        .container #parent table tbody td {
           width: 100px;
           padding: 10px;
           text-align: center;
           border: 2px solid #3a4f61;
-          background: #eaf3fb;
-          .color-div {
-            width: 95%;
-            height: 30px;
-            margin: 0 auto;
-          }
-        }
-      }
-    }
-  }
-  #buttons {
+          background: #FFFFFF; }
+  .container #buttons {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-  .itemName {
-    font-weight: 700;
-  }
-  .itemAdded {
-    color: #3c9d90;
-  }
-  .itemRemoved {
-    color: #A92222;
-  }
-}
+    justify-content: center; }
+  .container .itemName {
+    font-weight: 700; }
+  .container .itemAdded {
+    color: #3c9d90; }
+  .container .itemRemoved {
+    color: #A92222; }
 
 button {
   font: 2rem/2rem 'Bebas Neue', Helvetica Neue, sans-serif;
@@ -99,43 +79,32 @@ button {
   cursor: pointer;
   transition: all 0.5s ease-in-out;
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 10px 36px 0, rgba(0, 0, 0, 0.06) 0 0 0 1px;
-}
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0; }
 
 #btnAdd {
   background: #3a4f61;
-  color: #FFFFFF;
-  &:hover {
-    background: #748492;
-  }
-  &:disabled {
-    background: lighten(#3a4f61, 20%);
-    cursor: not-allowed;
-  }
-}
+  color: #FFFFFF; }
+  #btnAdd:hover {
+    background: #748492; }
+  #btnAdd:disabled {
+    background: #6183a0;
+    cursor: not-allowed; }
 
 .linkIcon {
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
-  &:hover {
-    color: #EC6F6F;
-  }
-  &:disabled {
-    background: lighten(#EC6F6F, 20%);
-    cursor: not-allowed;
-  }
-}
-
-/******************************************/
-/**************** TOOLTIPS ****************/
-/******************************************/
+  transition: all 0.5s ease-in-out; }
+  .linkIcon:hover {
+    color: #EC6F6F; }
+  .linkIcon:disabled {
+    background: #f8c9c9;
+    cursor: not-allowed; }
 
 /* Tooltip container */
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */ }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
@@ -146,18 +115,15 @@ button {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
-
   /* Fade in tooltip */
   opacity: 0;
-  transition: opacity 0.3s;
-}
+  transition: opacity 0.3s; }
 
 /* Tooltip arrow */
 .tooltip .tooltiptext::after {
@@ -168,14 +134,12 @@ button {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+  border-color: #555 transparent transparent transparent; }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
-  opacity: 1;
-}
+  opacity: 1; }
 
 input {
   border: 2px solid #3a4f61;
@@ -185,5 +149,4 @@ input {
   font-size: 1.5rem;
   cursor: auto;
   transition: all 0.5s ease-in-out;
-  border-radius: 3px;
-}
+  border-radius: 3px; }
