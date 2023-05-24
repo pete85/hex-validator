@@ -1,0 +1,155 @@
+@import 'variables';
+
+// A map of breakpoints.
+$breakpoints: (
+  xxs: 500px,
+  xs: 600px,
+  sm: 768px,
+  md: 850px,
+  lg: 992px,
+  xl: 1270px,
+);
+
+//
+//  RESPOND ABOVE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-above(sm) {}
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+//
+//  RESPOND BELOW
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin respond-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+//
+//  RESPOND BETWEEN
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// @include respond-between(sm, md) {}
+@mixin respond-between($lower, $upper) {
+  // If both the lower and upper breakpoints exist in the map.
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    // Get the lower and upper breakpoints.
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    // Write the media query.
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+
+    // If one or both of the breakpoints don't exist.
+  } @else {
+    // If lower breakpoint is invalid.
+    @if (map-has-key($breakpoints, $lower) == false) {
+      // Log a warning.
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+
+    // If upper breakpoint is invalid.
+    @if (map-has-key($breakpoints, $upper) == false) {
+      // Log a warning.
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+
+//
+//  COLOUR TRANSPARENT
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin background-opacity($color, $opacity) {
+  background: $color; /*Fallback */
+  background: rgba($color, $opacity);
+}
+
+@mixin color-opacity($color, $opacity) {
+  /*Fallback */
+  color: rgba($color, $opacity);
+}
+
+//
+//  TOUR GUIDE
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin tour-triangle($direction, $color: currentColor, $size: 1rem) {
+  @if not index(top right bottom left, $direction) {
+    @error 'Direction must be either `top`, `right`, `bottom` or `left`.';
+  }
+
+  $opposite-direction: top;
+
+  @if $direction==top {
+    $opposite-direction: bottom;
+  }
+
+  @if $direction==bottom {
+    $opposite-direction: top;
+  }
+
+  @if $direction==right {
+    $opposite-direction: left;
+  }
+
+  @if $direction==left {
+    $opposite-direction: right;
+  }
+
+  width: 0;
+  height: 0;
+  content: '';
+  z-index: 2;
+  border-#{$opposite-direction}: $size solid $color;
+  $perpendicular-borders: $size solid transparent;
+  @if $direction==top or $direction==bottom {
+    border-left: $perpendicular-borders;
+    border-right: $perpendicular-borders;
+  } @else if $direction==right or $direction==left {
+    border-bottom: $perpendicular-borders;
+    border-top: $perpendicular-borders;
+  }
+}
+
+@mixin box-shadow($x-axis: 0, $y-axis: 1px, $blur: 2px, $color: map-get($theme-colors, grey)) {
+  box-shadow: $x-axis $y-axis $blur $color;
+}
+
+@mixin rotate($angle) {
+  transform: rotate($angle);
+}
+
+@mixin text-shadow(
+  $width: 1px, $blur: 0, $color: map-get($theme-colors, grey)) {
+  text-shadow:
+    - $width - $width $blur $color,
+    $width - $width $blur $color,
+    - $width $width $blur $color,
+    $width $width $blur $color;
+}
+
+@mixin bg-opacity($color, $opacity) {
+  background: $color;
+  background: rgba($color, $opacity);
+}
