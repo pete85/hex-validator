@@ -1,0 +1,29 @@
+{
+  "name": "hex-validator",
+  "version": "1.0.0",
+  "description": "Simple little JS app that takes user's input, puts it in a table and checks if it is a valid HEX color value.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "node-sass --include-path scss styles/styles.scss styles/styles.css",
+    "uglify-css": "uglifycss path/to/file.css > path/to/output.min.css",
+    "watch": "nodemon -e scss -x npm run css && npm run uglify-css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pete85/hex-validator.git"
+  },
+  "author": "Piotr Furmanek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pete85/hex-validator/issues"
+  },
+  "homepage": "https://github.com/pete85/hex-validator#readme",
+  "devDependencies": {
+    "node-sass": "^9.0.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "uglifycss": "^0.0.29"
+  }
+}
